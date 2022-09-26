@@ -1,15 +1,20 @@
 package org.example;
 
 import lombok.Getter;
+import org.example.exceptions.ValorDeSaqueMaiorQueSaldoException;
+import org.example.interfaces.ContaInterface;
 
 public abstract class Conta implements ContaInterface {
 
     private static final int AGENCIA_PADRAO = 1;
     private static int SEQUENCIAL = 1;
 
-    @Getter protected int agencia;
-    @Getter protected int numConta;
-    @Getter protected double saldo;
+    @Getter
+    protected int agencia;
+    @Getter
+    protected int numConta;
+    @Getter
+    protected double saldo;
     protected Cliente cliente;
 
     public Conta(Cliente cliente) {
@@ -19,8 +24,15 @@ public abstract class Conta implements ContaInterface {
     }
 
     @Override
-    public void sacar(double valor) {
-        saldo -= valor;
+    public void sacar(double valor) throws ValorDeSaqueMaiorQueSaldoException {
+        try {
+            if (saldo < valor) {
+                throw new ValorDeSaqueMaiorQueSaldoException();
+            } else {
+                saldo -= valor;
+            }
+        } catch (ValorDeSaqueMaiorQueSaldoException e) {
+        }
     }
 
     @Override
@@ -34,7 +46,7 @@ public abstract class Conta implements ContaInterface {
         contaDestino.depositar(valor);
     }
 
-    protected void imprimirDadosDaConta(){
+    protected void imprimirDadosDaConta() {
         System.out.println(String.format("Titular: %s", this.cliente.getNomeCliente()));
         System.out.println(String.format("Data de Nascimento: %s", this.cliente.getDataNasc()));
         System.out.println(String.format("Agencia: %d", this.agencia));

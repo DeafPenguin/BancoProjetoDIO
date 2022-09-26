@@ -1,4 +1,6 @@
-package org.example;
+package org.example.interfaces;
+
+import org.example.Conta;
 
 public interface ContaInterface {
     void sacar(double valor);
