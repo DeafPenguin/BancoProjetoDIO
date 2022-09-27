@@ -44,4 +44,15 @@ public class ContaTestes {
         // THEN
         assertEquals(contaVictor.getSaldo(), 0); // Saldo final zerado
     }
+
+    @Test
+    @DisplayName("Metodo saque deve falhar ao sacar com não-numeros")
+    public void testeMetodoSaqueNaoNumerico() {
+        // GIVEN
+        assertEquals(contaVictor.getSaldo(), 0); // Saldo inicial zerado
+        // WHEN
+        contaVictor.sacar("a"); // Sacando os R$200,00
+        // THEN
+        assertEquals(contaVictor.getSaldo(), 0); // Saldo final zerado
+    }
 }
