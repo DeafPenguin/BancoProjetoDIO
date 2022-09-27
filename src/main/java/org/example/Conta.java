@@ -24,26 +24,35 @@ public abstract class Conta implements ContaInterface {
     }
 
     @Override
-    public void sacar(double valor) throws ValorDeSaqueMaiorQueSaldoException {
+    public void sacar(String valorDigitado) throws ValorDeSaqueMaiorQueSaldoException, NumberFormatException {
         try {
+            double valor = Double.parseDouble(valorDigitado);
             if (saldo < valor) {
                 throw new ValorDeSaqueMaiorQueSaldoException();
             } else {
                 saldo -= valor;
             }
         } catch (ValorDeSaqueMaiorQueSaldoException e) {
+        } catch (NumberFormatException e) {
+            System.out.println("\nERRO: Valor inválido. Favor refazer operação.\n");
         }
     }
 
     @Override
-    public void depositar(double valor) {
-        saldo += valor;
+    public void depositar(String valorDigitado) {
+        try {
+            double valor = Double.parseDouble(valorDigitado);
+            saldo += valor;
+        } catch (ValorDeSaqueMaiorQueSaldoException e) {
+        } catch (NumberFormatException e) {
+            System.out.println("\nERRO: Valor inválido. Favor refazer operação.\n");
+        }
     }
 
     @Override
-    public void transferir(Conta contaDestino, double valor) {
-        this.sacar(valor);
-        contaDestino.depositar(valor);
+    public void transferir(Conta contaDestino, String valorDigitado) {
+        this.sacar(valorDigitado);
+        contaDestino.depositar(valorDigitado);
     }
 
     protected void imprimirDadosDaConta() {

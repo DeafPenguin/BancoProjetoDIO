@@ -3,11 +3,11 @@ package org.example.interfaces;
 import org.example.Conta;
 
 public interface ContaInterface {
-    void sacar(double valor);
+    void sacar(String valor);
 
-    void depositar(double valor);
+    void depositar(String valor);
 
-    void transferir(Conta contaDestino, double valor);
+    void transferir(Conta contaDestino, String valor);
 
     void imprimirExtrato();
 }

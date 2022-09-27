@@ -28,19 +28,19 @@ public class Main {
                 break;
             case 2:
                 System.out.println("Digite o valor do saque:");
-                int valorSaque = Integer.parseInt(new Scanner(System.in).nextLine());
+                String valorSaque = new Scanner(System.in).nextLine();
                 conta.sacar(valorSaque);
                 break;
             case 3:
                 System.out.println("Digite o valor do deposito:");
-                int valorDeposito = Integer.parseInt(new Scanner(System.in).nextLine());
+                String valorDeposito = new Scanner(System.in).nextLine();
                 conta.depositar(valorDeposito);
                 break;
             case 4: // TODO: Habilitar seleção de conta destino para o usuário
                 Cliente victor = new Cliente("Victor Murilo Balbino Machado", "30/06/1993");
                 Conta cp = new ContaPoupanca(victor);
                 System.out.println("Digite o valor da transferência:");
-                int valorTransferencia = Integer.parseInt(new Scanner(System.in).nextLine());
+                String valorTransferencia = new Scanner(System.in).nextLine();
                 conta.transferir(cp, valorTransferencia);
                 break;
             case 5:
